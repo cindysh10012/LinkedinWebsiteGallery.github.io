@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles/allstyles.css">
+</head>
+<body>
+    <h1>LinkedIn: A Glimpse Into The Job Market</h1>
+    <h2>Overall Introduction</h2>
+    <p>In the dynamic landscape of talent acquisition, LinkedIn stands as a pivotal platform where thousands of companies and 
+        individuals converge daily in pursuit of professional connections and job opportunities. In recent times, many of us - 
+        especially those who are entering the workforce for the first time - have faced certain difficulties with being hired 
+        and in our career progression. Disparities with economists stating that the job market is ‘hot’, while those who are 
+        actively applying feel differently has driven us to try and gather some of our own findings. Given its prevalence at 
+        the forefront of career development, we felt that exploring data on LinkedIn could help to provide insight not only to 
+        the topic as a whole, but on a professional development level as well. Analyzing this data will give us an idea of what 
+        the job market really looks like and how one might be able to navigate it more effectively.
+    </p>
+    <div class="center">
+    <iframe src="otherhtml/overall.html" style="width: 80%; height: 600px;"></iframe>
+    </div>
+
+    <h2>Introduction to the data</h2>
+    <p>In order to carry out our analysis, we explored a 2023 dataset on LinkedIn found on 
+        <a href="https://www.kaggle.com/datasets/arshkon/linkedin-job-postings">Kaggle</a> which could provide a snapshot 
+        into the job climate given the website’s key position in seeking job opportunities. The dataset contains a comprehensive 
+        record of over 33,000 job postings which was separated into 11 csv files. Each record in the main csv has 27 attributes 
+        ranging from job titles, salaries, location and much more. The other files contained information on company and industry 
+        data so our preprocessing involved merging all these files for relevant information, leaving us with 37 main attributes 
+        to explore and further filter. Below are some of the attributes found in the processed dataset.
+    </p>
+    <div class="center">
+    <table class="tg">
+        <thead>
+            <tr>
+                <th class="tg-0lax">Attribute/Variable</th>
+                <th class="tg-0lax">Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="tg-0lax">job_id</td>
+                <td class="tg-0lax">The job ID as defined by <a href="https://www.linkedin.com/jobs/view/job_id">LinkedIn</a></td>
+            </tr>
+            <tr>
+                <td class="tg-0lax">company_id</td>
+                <td class="tg-0lax">Identifier for the company associated with the job posting (maps to companies.csv)</a></td>
+            </tr>
+            <tr>
+                <td class="tg-0lax">job_description</td>
+                <td class="tg-0lax">Job description.</a></td>
+            </tr>
+            <tr>
+                <td class="tg-0lax">max_salary</td>
+                <td class="tg-0lax">Maximum salary.</a></td>
+            </tr>
+            <tr>
+                <td class="tg-0lax">med_salary</td>
+                <td class="tg-0lax">Median salary.</a></td>
+            </tr>
+            <tr>
+                <td class="tg-0lax">min_salary</td>
+                <td class="tg-0lax">Minimum salary.</a></td>
+            </tr>
+            <tr>
+                <td class="tg-0lax">pay_period</td>
+                <td class="tg-0lax">Pay period for salary (Hourly, Monthly, Yearly).</a></td>
+            </tr>
+            <tr>
+                <td class="tg-0lax">location</td>
+                <td class="tg-0lax">Job location.</a></td>
+            </tr>
+            <tr>
+                <td class="tg-0lax">applies</td>
+                <td class="tg-0lax">Number of applications that have been submitted.</a></td>
+            </tr>
+            <tr>
+                <td class="tg-0lax">formatted_experience_level</td>
+                <td class="tg-0lax">Job experience level (entry, associate, executive, etc).</a></td>
+            </tr>
+            <tr>
+                <td class="tg-0lax">skill_abr</td>
+                <td class="tg-0lax">Abbreviation for skill (maps to skills.csv from job_skills.csv).</a></td>
+            </tr>
+            <tr>
+                <td class="tg-0lax">job_industry/function</td>
+                <td class="tg-0lax">ID for job industry/function (maps to industries.csv from job_industries.csv).</a></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <p>We also had to further process the data concerning the salary as the dataset featured entries with different pay
+        periods (hourly, monthly, yearly) which meant that we had to adjust these variables. We decided to extrapolate them
+        all to yearly pay periods so that our analysis and visualizations could be carried out more accurately.
+    </p>
+
+    <h2>The most common words or phrases used in job titles</h2>
+    <p>The word cloud visualization is generated by extracting job titles from a DataFrame and representing them in a graphical format. The size of each word in the cloud corresponds to its frequency or significance relative to other words in the dataset. Analysis of the word cloud reveals that roles related to ownership, operation, and directorship constitute a substantial portion of the job market, underscoring the importance of leadership skill development. Additionally, sales, programming, and engineering skills emerge as commonly sought-after attributes. It's important to note that the choice of colors in the visualization is purely for aesthetic appeal and does not convey any specific meaning related to the textual content.</p>
+    <div class="center">
+    <img src="images/Word Cloud.png" alt="Word Cloud">
+    </div>
+
+    <h2>Median Salaries Chloropleth Map</h2>
+    <p>Interactive Chloropleth Map that visualizes all 50 states’ median and average salaries using a color scale. You can toggle one of the layers or both using the legend. There is a ToolTip that shows the state name as well as the median and average salaries depending on which one you selected. We can see that the highest average salaries tend to be in some of the more populous states such as California, Texas, and New York, as well as the Midwest. The median salaries show a larger salary spread, suggesting that some states have certain jobs or industries that are inflating or deflating the average. One example of this is Wisconsin, which appears to have a lower average salary but a higher median, suggesting that there are some jobs that are bringing the average down. To add on, the interactive map provides valuable insights into regional salary distributions, highlighting disparities in income across states and shedding light on factors influencing average and median earnings.</p>
+    <div class="center">
+    <iframe src="otherhtml/interactive_map_median_salary.html" style="width: 70%; height: 600px;"></iframe>
+    </div>
+
+    <h2>Top 3 Industries Sankey Diagram</h2>
+    <p>Interactive Sankey Diagram created using D3, along with Javascript, CSS, and HTML. The Javascript is where most of the 
+        code is, where the CSS was used to increase the size of the page to display more information. The HTML then implemented 
+        the JS and CSS. Keywords were found in each job to separate the industries into three categories: Business (Orange), 
+        Healthcare (Green) and Technology (Cyan). To see the data more clearly you can drag the nodes on the right around. 
+        Additionally, you can hover over them to see their industry and how many of those position titles are listed. 
+        We can see from the data that the majority of job postings are in the business sector currently, which explains why the 
+        technology and healthcare industries can be so competitive as there are less available jobs. The interactivity of the 
+        Sankey Diagram adds depth to the visualization, allowing users to engage with the data dynamically. By dragging nodes 
+        and hovering over them, users can gain insights into the distribution of job postings across different industries. 
+        Although the diagram looks cluttered on this site, the HTML alone is more viewable and readable. Below is a static
+        image of the visualization. The <a href="otherhtml\sankey.html">enormous interactive version of the plot</a> is available on a differet page.</p>
+    <div class="center">
+    <img src="images/Sankey.png" alt="Sankey" style="width: 80%; height: auto;">
+    </div>
+    <div class="center">
+    </div>
+  
+    <h2>Heatmap of Top Skill Names by Experience Level</h2>
+    <p>The heatmap visualizes the top 10 most sought-after skills, ranked by the number of job postings, with the X-axis representing skill names and the Y-axis representing the experience levels. The intensity of red shading indicates the frequency of job postings on LinkedIn. The graph reveals that entry-level and mid-senior roles dominate the job market across skill categories. Particularly, Information Technology and engineering stand out as high-demand sectors for mid-senior level positions. However, the scarcity of internship opportunities amidst the job postings presents a concerning trend for college students. This pattern underscores a systemic issue where companies prioritize hiring individuals with existing skills, neglecting investment in internship programs. This dearth of internships poses a significant challenge for college students aiming to gain practical experience and advance their careers.</p>
+    <div class="center">
+    <img src="images/Heatmap.png" alt="Heatmap">
+    </div>
+    <h2>Summary and additional work</h2>
+    <p>The purpose of this project was to analyze how the job market has been changing and have a professional insight of what 
+        skill levels are the most looked for throughout the job market and Linkedin which has been a crucial tool for job 
+        searching amongst a wide range of ages. 
+
+    <p>We had 4 main takeaways from our analysis: </p>
+    <ul>
+        <li>
+            Across all sectors, project manager/owner/operator are the most common titles, which means college students may want 
+            to develop themselves holistically, not only in academic areas, but also in leadership, collaboration and 
+            communication.
+        </li>
+        <li>
+            Mid-senior level jobs are the most sought after in the overall job market and saw the most need for technical skills, 
+            so although we’re still in college, thinking about ways to accelerate your skill experience level growth rate is 
+            important.
+        </li>
+        <li>
+            The business sector overall saw more job postings, as many of them lack degree requirements, while jobs in tech fields 
+            like Engineering have a higher barrier to entry and are looking for people with more experience and concrete technical 
+            skills.
+        </li>
+        <li>
+            Data science is still a highly sought major or skillset in big cities as it’s directly related to their common 
+            biggest job demand sector, information technology which had the highest degree of skill importance.
+        </li>
+    </ul>
+
+    <p>Even though we have been able to demonstrate what are the most important skill levels that corporations or businesses 
+        are looking for and what areas have the widest variety of job openings, we can say that there might be some room for 
+        improvement. Due to the fact that the dataset only collected data on two distinct days throughout 2023. This meant that
+        we weren't able to carry out any sort of time series analysis which would be extremely insightful on monitoring the job
+        market, limiting our ability to identify trends and cycles within the market over different time periods. </p>
+        
+    <p>It is important to state that the data that we have been using is from 2023 which highly likely does not reflect the 
+        present job market nowadays given its nature and the rapid fluctuations that tend to occur. Analyzing a more current 
+        dataset would be extremely advantageous and it would be interesting to compare our current analysis to that
+        of an up-to-date look into the market.</p>
+        
+    <p>If there are any questions or any information that you would like to add, please don't hesitate in contacting us at 
+        any of our emails. Artus Lam (artuslam@gmail.com), Juan Cuesta (cueortjf@gmail.com), Harry La Cast 
+        (harrylacast@gmail.com), Cindy (Siyu) Hou (siyuhou1001@gmail.com) </p>
+</body>
+</html>

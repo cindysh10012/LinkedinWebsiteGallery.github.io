@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .error {
+        color: red;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@4.17.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-ae2f0dfbae8750ea65f1018b183c702d"}, "mark": "bar", "encoding": {"color": {"field": "skill_name", "type": "nominal"}, "tooltip": [{"field": "location", "type": "nominal"}, {"field": "skill_name", "type": "nominal"}, {"field": "job_postings_num", "type": "quantitative"}], "x": {"axis": {"title": "Location"}, "field": "location", "sort": {"field": "job_postings_num", "op": "sum", "order": "descending"}, "type": "nominal"}, "y": {"axis": {"title": "Number of Job Postings"}, "field": "job_postings_num", "type": "quantitative"}}, "height": 400, "selection": {"selector001": {"type": "interval", "bind": "scales", "encodings": ["x", "y"]}}, "title": "Job Postings by City, State and Skill", "width": 600, "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-ae2f0dfbae8750ea65f1018b183c702d": [{"location": "Atlanta, GA", "skill_name": "Engineering", "job_postings_num": 274}, {"location": "Atlanta, GA", "skill_name": "Information Technology", "job_postings_num": 510}, {"location": "Atlanta, GA", "skill_name": "Management", "job_postings_num": 148}, {"location": "Atlanta, GA", "skill_name": "Manufacturing", "job_postings_num": 123}, {"location": "Atlanta, GA", "skill_name": "Sales", "job_postings_num": 222}, {"location": "Austin, TX", "skill_name": "Engineering", "job_postings_num": 364}, {"location": "Austin, TX", "skill_name": "Information Technology", "job_postings_num": 616}, {"location": "Austin, TX", "skill_name": "Management", "job_postings_num": 254}, {"location": "Austin, TX", "skill_name": "Manufacturing", "job_postings_num": 261}, {"location": "Austin, TX", "skill_name": "Sales", "job_postings_num": 241}, {"location": "Chicago, IL", "skill_name": "Engineering", "job_postings_num": 281}, {"location": "Chicago, IL", "skill_name": "Information Technology", "job_postings_num": 478}, {"location": "Chicago, IL", "skill_name": "Management", "job_postings_num": 139}, {"location": "Chicago, IL", "skill_name": "Manufacturing", "job_postings_num": 187}, {"location": "Chicago, IL", "skill_name": "Sales", "job_postings_num": 302}, {"location": "Dallas, TX", "skill_name": "Engineering", "job_postings_num": 163}, {"location": "Dallas, TX", "skill_name": "Information Technology", "job_postings_num": 408}, {"location": "Dallas, TX", "skill_name": "Management", "job_postings_num": 141}, {"location": "Dallas, TX", "skill_name": "Manufacturing", "job_postings_num": 122}, {"location": "Dallas, TX", "skill_name": "Sales", "job_postings_num": 315}, {"location": "Houston, TX", "skill_name": "Engineering", "job_postings_num": 253}, {"location": "Houston, TX", "skill_name": "Information Technology", "job_postings_num": 409}, {"location": "Houston, TX", "skill_name": "Management", "job_postings_num": 184}, {"location": "Houston, TX", "skill_name": "Manufacturing", "job_postings_num": 141}, {"location": "Houston, TX", "skill_name": "Sales", "job_postings_num": 280}, {"location": "Los Angeles, CA", "skill_name": "Engineering", "job_postings_num": 111}, {"location": "Los Angeles, CA", "skill_name": "Information Technology", "job_postings_num": 190}, {"location": "Los Angeles, CA", "skill_name": "Management", "job_postings_num": 134}, {"location": "Los Angeles, CA", "skill_name": "Manufacturing", "job_postings_num": 100}, {"location": "Los Angeles, CA", "skill_name": "Sales", "job_postings_num": 270}, {"location": "Miami, FL", "skill_name": "Engineering", "job_postings_num": 80}, {"location": "Miami, FL", "skill_name": "Information Technology", "job_postings_num": 153}, {"location": "Miami, FL", "skill_name": "Management", "job_postings_num": 65}, {"location": "Miami, FL", "skill_name": "Manufacturing", "job_postings_num": 25}, {"location": "Miami, FL", "skill_name": "Sales", "job_postings_num": 198}, {"location": "New York, NY", "skill_name": "Engineering", "job_postings_num": 586}, {"location": "New York, NY", "skill_name": "Information Technology", "job_postings_num": 1192}, {"location": "New York, NY", "skill_name": "Management", "job_postings_num": 336}, {"location": "New York, NY", "skill_name": "Manufacturing", "job_postings_num": 159}, {"location": "New York, NY", "skill_name": "Sales", "job_postings_num": 601}, {"location": "San Francisco, CA", "skill_name": "Engineering", "job_postings_num": 335}, {"location": "San Francisco, CA", "skill_name": "Information Technology", "job_postings_num": 463}, {"location": "San Francisco, CA", "skill_name": "Management", "job_postings_num": 101}, {"location": "San Francisco, CA", "skill_name": "Manufacturing", "job_postings_num": 88}, {"location": "San Francisco, CA", "skill_name": "Sales", "job_postings_num": 151}, {"location": "Seattle, WA", "skill_name": "Engineering", "job_postings_num": 332}, {"location": "Seattle, WA", "skill_name": "Information Technology", "job_postings_num": 503}, {"location": "Seattle, WA", "skill_name": "Management", "job_postings_num": 178}, {"location": "Seattle, WA", "skill_name": "Manufacturing", "job_postings_num": 32}, {"location": "Seattle, WA", "skill_name": "Sales", "job_postings_num": 208}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div class="error" style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
